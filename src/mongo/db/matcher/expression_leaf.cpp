@@ -33,7 +33,7 @@
 #include "mongo/db/matcher/expression_leaf.h"
 
 #include <cmath>
-#include <pcrecpp.h>
+#include <re2.h>
 
 #include "mongo/bson/bsonelement_comparator.h"
 #include "mongo/bson/bsonmisc.h"

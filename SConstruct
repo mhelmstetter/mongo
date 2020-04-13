@@ -275,6 +275,11 @@ add_option('use-system-pcre',
     nargs=0,
 )
 
+add_option('use-system-re2',
+    help='use system version of re2 library',
+    nargs=0,
+)
+
 add_option('use-system-wiredtiger',
     help='use system version of wiredtiger library',
     nargs=0,

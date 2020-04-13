@@ -31,6 +31,10 @@ if not use_system_version_of_library('pcre'):
     thirdPartyIncludePathList.append(
         ('pcre', '#/src/third_party/pcre' + pcreSuffix))
 
+if not use_system_version_of_library('re2'):
+    thirdPartyIncludePathList.append(
+        ('re2', '#/src/third_party/re2/re2'))
+
 if not use_system_version_of_library('boost'):
     thirdPartyIncludePathList.append(
         ('boost', '#/src/third_party/boost' + boostSuffix))
@@ -446,4 +450,18 @@ icuEnv.Library(
     target='shim_icu',
     source=[
         'shim_icu.cpp',
+    ])
+
+re2Env = env.Clone();
+re2Env.InjectThirdPartyIncludePaths(libraries=['re2'])
+re2Env.SConscript('re2' + '/SConscript', exports={ 'env' : re2Env })
+re2Env = re2Env.Clone(
+    LIBDEPS_INTERFACE=[
+        're2' + '/re2',
+    ])
+
+re2Env.Library(
+    target='shim_re2',
+    source=[
+        'shim_re2.cpp',
     ])
